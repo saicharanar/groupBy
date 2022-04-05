@@ -25,9 +25,6 @@ const isIncludes = function (element, set) {
   }
 
   for (let outerIndex = 0; outerIndex < set.length; outerIndex++) {
-    if (!Array.isArray(set[outerIndex])) {
-      continue;
-    }
     if (areArraysEqual(element, set[outerIndex])) {
       return true;
     }
