@@ -22,11 +22,10 @@ const areEqual = function (elementOne, elementTwo) {
 const isIncludes = function (element, array) {
   if (!Array.isArray(element)) {
     return array.includes(element);
-
   }
 
   for (let outerIndex = 0; outerIndex < array.length; outerIndex++) {
-    if (array[outerIndex].length === undefined) {
+    if (!Array.isArray(array[outerIndex])) {
       continue;
     }
     if (areArraysEqual(element, array[outerIndex])) {
@@ -46,18 +45,22 @@ const uniqueElements = function (array) {
   return unique;
 };
 
+const elementGroup = function (uniqueElement, array) {
+  const sameElements = [];
+  for (let innerIndex = 0; innerIndex < array.length; innerIndex++) {
+    if (areEqual(uniqueElement, array[innerIndex])) {
+      sameElements.push(array[innerIndex]);
+    }
+  }
+  return sameElements;
+}
+
 const groupSameElements = function (array) {
   const unique = uniqueElements(array);
   const groupedElements = [];
 
   for (let outerIndex = 0; outerIndex < unique.length; outerIndex++) {
-    const sameElements = [];
-    for (let innerIndex = 0; innerIndex < array.length; innerIndex++) {
-      if (areEqual(unique[outerIndex], array[innerIndex])) {
-        sameElements.push(array[innerIndex]);
-      }
-    }
-    groupedElements.push(sameElements);
+    groupedElements.push(elementGroup(unique[outerIndex], array));
   }
   return groupedElements;
 };
