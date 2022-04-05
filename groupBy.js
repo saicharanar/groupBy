@@ -19,48 +19,48 @@ const areEqual = function (elementOne, elementTwo) {
   return areArraysEqual(elementOne, elementTwo);
 };
 
-const isIncludes = function (element, array) {
+const isIncludes = function (element, set) {
   if (!Array.isArray(element)) {
-    return array.includes(element);
+    return set.includes(element);
   }
 
-  for (let outerIndex = 0; outerIndex < array.length; outerIndex++) {
-    if (!Array.isArray(array[outerIndex])) {
+  for (let outerIndex = 0; outerIndex < set.length; outerIndex++) {
+    if (!Array.isArray(set[outerIndex])) {
       continue;
     }
-    if (areArraysEqual(element, array[outerIndex])) {
+    if (areArraysEqual(element, set[outerIndex])) {
       return true;
     }
   }
   return false;
 };
 
-const uniqueElements = function (array) {
+const uniqueElements = function (set) {
   const unique = [];
-  for (let index = 0; index < array.length; index++) {
-    if (!isIncludes(array[index], unique)) {
-      unique.push(array[index]);
+  for (let index = 0; index < set.length; index++) {
+    if (!isIncludes(set[index], unique)) {
+      unique.push(set[index]);
     }
   }
   return unique;
 };
 
-const elementGroup = function (uniqueElement, array) {
+const elementGroup = function (uniqueElement, set) {
   const sameElements = [];
-  for (let innerIndex = 0; innerIndex < array.length; innerIndex++) {
-    if (areEqual(uniqueElement, array[innerIndex])) {
-      sameElements.push(array[innerIndex]);
+  for (let innerIndex = 0; innerIndex < set.length; innerIndex++) {
+    if (areEqual(uniqueElement, set[innerIndex])) {
+      sameElements.push(set[innerIndex]);
     }
   }
   return sameElements;
 }
 
-const groupSameElements = function (array) {
-  const unique = uniqueElements(array);
+const groupSameElements = function (set) {
+  const unique = uniqueElements(set);
   const groupedElements = [];
 
   for (let outerIndex = 0; outerIndex < unique.length; outerIndex++) {
-    groupedElements.push(elementGroup(unique[outerIndex], array));
+    groupedElements.push(elementGroup(unique[outerIndex], set));
   }
   return groupedElements;
 };
