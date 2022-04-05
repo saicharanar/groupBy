@@ -19,13 +19,13 @@ const areEqual = function (elementOne, elementTwo) {
   return areArraysEqual(elementOne, elementTwo);
 };
 
-const isIncludes = function (element, set) {
+const doesIncludes = function (element, set) {
   if (!Array.isArray(element)) {
     return set.includes(element);
   }
 
-  for (let outerIndex = 0; outerIndex < set.length; outerIndex++) {
-    if (areArraysEqual(element, set[outerIndex])) {
+  for (let index = 0; index < set.length; index++) {
+    if (areArraysEqual(element, set[index])) {
       return true;
     }
   }
@@ -35,7 +35,7 @@ const isIncludes = function (element, set) {
 const uniqueElements = function (set) {
   const unique = [];
   for (let index = 0; index < set.length; index++) {
-    if (!isIncludes(set[index], unique)) {
+    if (!doesIncludes(set[index], unique)) {
       unique.push(set[index]);
     }
   }
@@ -44,9 +44,9 @@ const uniqueElements = function (set) {
 
 const elementGroup = function (uniqueElement, set) {
   const sameElements = [];
-  for (let innerIndex = 0; innerIndex < set.length; innerIndex++) {
-    if (areEqual(uniqueElement, set[innerIndex])) {
-      sameElements.push(set[innerIndex]);
+  for (let index = 0; index < set.length; index++) {
+    if (areEqual(uniqueElement, set[index])) {
+      sameElements.push(set[index]);
     }
   }
   return sameElements;
@@ -56,8 +56,8 @@ const groupSameElements = function (set) {
   const unique = uniqueElements(set);
   const groupedElements = [];
 
-  for (let outerIndex = 0; outerIndex < unique.length; outerIndex++) {
-    groupedElements.push(elementGroup(unique[outerIndex], set));
+  for (let index = 0; index < unique.length; index++) {
+    groupedElements.push(elementGroup(unique[index], set));
   }
   return groupedElements;
 };
