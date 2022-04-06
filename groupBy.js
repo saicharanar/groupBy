@@ -1,8 +1,7 @@
-const assertLib = require('./assert.js');
-const assert = assertLib.assert;
-const isEqual = assertLib.isEqual;
+const assert = require('./assert.js').assert;
+const isEqual = require('./isEqual.js').isEqual;
 
-const doesIncludes = function (array, element) {
+const contains = function (array, element) {
   if (!Array.isArray(element)) {
     return array.includes(element);
   }
@@ -18,7 +17,7 @@ const doesIncludes = function (array, element) {
 const uniqueElements = function (array) {
   const unique = [];
   for (let index = 0; index < array.length; index++) {
-    if (!doesIncludes(unique, array[index])) {
+    if (!contains(unique, array[index])) {
       unique.push(array[index]);
     }
   }
