@@ -4,6 +4,7 @@ const isEqual = function (lhs, rhs) {
   if (!bothElementsAreArrays) {
     return lhs === rhs;
   }
+
   const array1 = lhs;
   const array2 = rhs;
   if (array1.length !== array2.length) {
