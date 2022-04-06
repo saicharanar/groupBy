@@ -1,26 +1,26 @@
 const assert = require('./assert.js').assert;
 const isEqual = require('./isEqual.js').isEqual;
 
-const occurrence = function (group, element) {
-  for (let index = 0; index < group.length; index++) {
-    if (isEqual(group[index][0], element)) {
-      group[index][1]++;
-      return group;
+const occurrence = function (counts, element) {
+  for (let index = 0; index < counts.length; index++) {
+    if (isEqual(counts[index][0], element)) {
+      counts[index][1]++;
+      return counts;
     }
   }
 
-  group.push([element, 1]);
-  return group;
+  counts.push([element, 1]);
+  return counts;
 }
 
 const frequencyOfElements = function (elementList) {
-  let group = [];
+  let counts = [];
 
   for (let index = 0; index < elementList.length; index++) {
-    group = occurrence(group, elementList[index]);
+    counts = occurrence(counts, elementList[index]);
   }
 
-  return group;
+  return counts;
 }
 
 const testFrequency = function (elementList, expected, message) {
