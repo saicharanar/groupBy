@@ -26,8 +26,8 @@ const uniqueElements = function (elementList) {
 
 const occurrence = function (elementList, element) {
   let count = 0;
-  for (let innerIndex = 0; innerIndex < elementList.length; innerIndex++) {
-    if (isEqual(element, elementList[innerIndex])) {
+  for (let index = 0; index < elementList.length; index++) {
+    if (isEqual(element, elementList[index])) {
       count++;
     }
   }
@@ -38,9 +38,9 @@ const frequencyOfElements = function (elementList) {
   const unique = uniqueElements(elementList);
   const group = [];
 
-  for (let outerIndex = 0; outerIndex < unique.length; outerIndex++) {
-    const elementFrequency = occurrence(elementList, unique[outerIndex]);
-    group.push([unique[outerIndex], elementFrequency]);
+  for (let index = 0; index < unique.length; index++) {
+    const elementFrequency = occurrence(elementList, unique[index]);
+    group.push([unique[index], elementFrequency]);
   }
   return group;
 }
@@ -71,6 +71,21 @@ const frequencyTestCases = function () {
     [1, [1]],
     [[1, 1], [[1], 1]],
     'A double element array with array without duplication'
+  );
+  testFrequency(
+    [1, [1], [1]],
+    [[1, 1], [[1], 2]],
+    'A double element array with array with duplication'
+  );
+  testFrequency(
+    [1, [[1], 2], [1]],
+    [[1, 1], [[[1], 2], 1], [[1], 1]],
+    'A double element array with nested array without duplication'
+  );
+  testFrequency(
+    [1, [[1], 2], [[1], 2], [1]],
+    [[1, 1], [[[1], 2], 2], [[1], 1]],
+    'A double element array with nested array without duplication'
   );
 
 }
