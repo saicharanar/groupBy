@@ -9,4 +9,3 @@ const assert = function (actual, expected, message) {
 };
 
 exports.assert = assert;
-exports.isEqual = isEqual;
