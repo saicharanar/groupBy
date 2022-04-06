@@ -1,22 +1,24 @@
 
-const areArraysEqual = function (array1, array2) {
+const isEqual = function (actual, expected) {
+  const bothElementsAreArrays = Array.isArray(actual) && Array.isArray(expected);
+  if (!bothElementsAreArrays) {
+    return actual === expected;
+  }
+  const array1 = actual;
+  const array2 = expected;
   if (array1.length !== array2.length) {
     return false;
   }
-  for (let outerIndex = 0; outerIndex < array1.length; outerIndex++) {
-    for (let innerIndex = 0; innerIndex < array1[outerIndex].length; innerIndex++) {
 
-      if (array1[outerIndex][innerIndex] !== array2[outerIndex][innerIndex]) {
-        return false;
-      }
-
+  for (let index = 0; index < array1.length; index++) {
+    if (!isEqual(array1[index], array2[index])) {
+      return false;
     }
   }
   return true;
-}
-
+};
 const assert = function (actual, expected, message) {
-  const testResult = areArraysEqual(actual, expected);
+  const testResult = isEqual(actual, expected);
   const status = testResult ? '✅' : '❌';
   console.log(status, '-', message);
 
@@ -24,3 +26,4 @@ const assert = function (actual, expected, message) {
 };
 
 exports.assert = assert;
+exports.isEqual = isEqual;
