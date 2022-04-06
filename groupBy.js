@@ -14,7 +14,7 @@ const contains = function (array, element) {
   return false;
 };
 
-const uniqueElements = function (set) {
+const uniqueElements = function (array) {
   const unique = [];
   for (let index = 0; index < array.length; index++) {
     if (!contains(unique, array[index])) {
