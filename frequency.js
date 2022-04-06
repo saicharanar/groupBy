@@ -65,7 +65,12 @@ const frequencyTestCases = function () {
   testFrequency(
     [1, 2, 2],
     [[1, 1], [2, 2]],
-    'A triple element with duplication'
+    'A triple element array with duplication'
+  );
+  testFrequency(
+    [1, [1]],
+    [[1, 1], [[1], 1]],
+    'A double element array with array without duplication'
   );
 
 }
